@@ -4,4 +4,5 @@
   (pps ppx_jane))
  (libraries
   core
-  core_kernel.pairing_heap))
+  core_kernel.pairing_heap
+  ))

@@ -1,3 +1,7 @@
 (test
  (name test_ICC)
  (libraries ICC))
+
+(test
+ (name test_huffman)
+ (libraries ICC))
