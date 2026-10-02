@@ -1,4 +1,4 @@
 (executable
- (public_name math3411)
+ (public_name ICC)
  (name main)
- (libraries math3411))
+ (libraries ICC))

@@ -1,0 +1,8 @@
+lib: [
+  "_build/install/default/lib/ICC/META"
+  "_build/install/default/lib/ICC/dune-package"
+  "_build/install/default/lib/ICC/opam"
+]
+bin: [
+  "_build/install/default/bin/ICC"
+]

@@ -1,6 +1,6 @@
 (lang dune 3.24)
 
-(name math3411)
+(name ICC)
 
 (generate_opam_files true)
 
@@ -16,7 +16,7 @@
 (documentation https://url/to/documentation)
 
 (package
- (name math3411)
+ (name ICC)
  (synopsis "A short synopsis")
  (description "A longer description")
  (depends ocaml)

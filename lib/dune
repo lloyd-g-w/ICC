@@ -1,2 +1,4 @@
 (library
- (name math3411))
+  (preprocess
+ (pps ppx_jane))
+ (name ICC))
