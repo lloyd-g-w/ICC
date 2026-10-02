@@ -1,4 +1,7 @@
 (library
-  (preprocess
- (pps ppx_jane))
- (name ICC))
+ (name ICC)
+ (preprocess
+  (pps ppx_jane))
+ (libraries
+  core
+  core_kernel.pairing_heap))
