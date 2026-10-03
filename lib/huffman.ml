@@ -39,15 +39,15 @@ let to_hashtbl (type a) (module Key : Core.Hashtbl.Key with type t = a)
   let res = Hashtbl.create (module Key) in
   let rec aux code tree =
     match tree.data with
-    | Leaf (x, _) -> Hashtbl.add_exn res ~key:x ~data:code
+    | Leaf (x, _) -> Hashtbl.add_exn res ~key:x ~data:(List.rev code)
     | Node (l, r, _) ->
-        aux (code ^ "0") l;
-        aux (code ^ "1") r
+        aux (Bit.Zero :: code) l;
+        aux (Bit.One :: code) r
   in
-  aux "" tree;
+  aux [] tree;
   res
 
-let print to_string ?(pretty = true) tree =
+let pp to_string ?(pretty = true) tree =
   let rec aux prefix code is_last bit tree =
     let branch = if is_last then "`-- " else "|-- " in
     let next_prefix = prefix ^ if is_last then "    " else "|   " in
@@ -66,3 +66,17 @@ let print to_string ?(pretty = true) tree =
   | Node (l, r, _) ->
       aux "" "0" false "0" l;
       aux "" "1" true "1" r
+
+let encode to_encode tree_map = Hashtbl.find tree_map to_encode
+
+let decode codeword tree =
+  let rec aux codeword tree =
+    match codeword with
+    | [] -> ( match tree.data with Leaf (x, _) -> Some x | _ -> None)
+    | c :: cs -> (
+        match tree.data with
+        | Leaf (_, _) -> None
+        | Node (l, r, _) -> (
+            match c with Bit.Zero -> aux cs l | Bit.One -> aux cs r))
+  in
+  aux codeword tree
